@@ -2,10 +2,12 @@ import java.util.*;
 
 public class BaseballGame {
     Scanner sc = new Scanner(System.in);
+    int gameCount;
 
 
     // 객체 생성시 정답을 만들도록 함
     public BaseballGame() {
+
 
         Set<Integer> resultNumCreate = new LinkedHashSet<>();
         Random random = new Random();
@@ -30,6 +32,8 @@ public class BaseballGame {
             }
 
             // 3. 게임 진행횟수 증가
+            gameCount ++;
+
             // 4. 스트라이크 개수 계산
             // 5. 정답여부 확인, 만약 정답이면 break 를 이용해 반복문 탈출
             // 6. 볼 개수 계산
