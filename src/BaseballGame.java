@@ -33,7 +33,13 @@ public class BaseballGame {
 
             // 4. 스트라이크 개수 계산
             int strike = countStrike(num);
+
             // 5. 정답여부 확인, 만약 정답이면 break 를 이용해 반복문 탈출
+            if (strike == 3) {
+                System.out.println("정답입니다! 당신은 " + gameCount + " 회 만에 정답을 맞추셨습니다!");
+                break;
+            }
+
             // 6. 볼 개수 계산
             // 7. 힌트 출력
         }
