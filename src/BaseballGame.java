@@ -36,14 +36,17 @@ public class BaseballGame {
 
             // 5. 정답여부 확인, 만약 정답이면 break 를 이용해 반복문 탈출
             if (strike == 3) {
-                System.out.println("정답입니다! 당신은 " + gameCount + " 회 만에 정답을 맞추셨습니다!");
                 break;
             }
 
             // 6. 볼 개수 계산
+            int ball = countBall(num);
+
             // 7. 힌트 출력
+            System.out.println("틀렸습니다! "+num+"은 "+strike+"Strike, "+ball+"Ball 입니다!");
         }
         // 게임 진행횟수 반환
+        return gameCount;
     }
 
     protected boolean validateInput(String input) {
@@ -67,6 +70,21 @@ public class BaseballGame {
 
 
     private int countBall(String input) {
+        int ball = 0;
+
+        List<Integer> answerList = new ArrayList<>(resultNum);
+
+        for (int i = 0; i < 3; i++) {
+            int checkBall = Character.getNumericValue(input.charAt(i));
+
+            for (int j = 0; j < 3; j++) {
+                if (i != j && checkBall == answerList.get(j)) {
+                    ball++;
+                    break;
+                }
+            }
+        }
+        return ball;
 
     }
 }
