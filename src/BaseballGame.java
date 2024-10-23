@@ -44,6 +44,7 @@ public class BaseballGame {
 
             // 7. 힌트 출력
             System.out.println("틀렸습니다! "+num+"은 "+strike+"Strike, "+ball+"Ball 입니다!");
+            System.out.println("");
         }
         // 게임 진행횟수 반환
         return gameCount;
@@ -85,6 +86,5 @@ public class BaseballGame {
             }
         }
         return ball;
-
     }
 }
