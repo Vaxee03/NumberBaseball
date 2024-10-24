@@ -20,6 +20,9 @@ commit #10 : Style : 사용자 가독성 증가를 위한 수정
 
 commit #11 : Feat : 시작 메뉴 오류 메시지 추가
 
+commit #12 : Feat : 게임 난이도 조절 기능 추가
+
+
 
 
 
