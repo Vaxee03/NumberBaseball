@@ -65,6 +65,7 @@ public class BaseballGame {
         return gameCount;
     }
 
+    // 입력값 검증 메서드
     protected boolean validateInput(String num) {
         if (num.length() != numCount) return false;
         return num.chars().distinct().count() == numCount;
@@ -84,7 +85,7 @@ public class BaseballGame {
         return strike;
     }
 
-
+    // 볼 개수 계산
     private int countBall(String input) {
         int ball = 0;
 
