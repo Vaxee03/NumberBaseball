@@ -14,34 +14,54 @@ public class Main {
             System.out.println("0. 자리수 설정 1. 게임 시작하기 2. 게임 기록 보기 3. 종료하기");
             String start = sc.nextLine();
 
-            // 시작 메뉴 입력값 검증
-            if (!checkMenuError(start)){
-                System.out.println("올바른 숫자를 입력해주세요!");
+            // 1. 시작 메뉴 입력값 검증
+            // 1 - 1 : if문 검증
+//            if (!checkMenuError(start)){
+//                System.out.println("올바른 숫자를 입력해주세요!");
+//                System.out.println("");
+//                continue;
+//            }
+
+            // 1 - 2 : try - catch문 검증
+            try {
+                checkMenuError(start);
+            } catch (InvalidInputException e) {
+                System.out.println(e.getMessage());
                 System.out.println("");
                 continue;
             }
 
-            //  0 = 난이도 설정
-            if (start.equals("0")){
+            //  2. 난이도 설정
+            if (start.equals("0")) {
                 System.out.println("설정하고자 하는 자리수를 입력하세요!");
-                String numCount=sc.nextLine();
+                String numCount = sc.nextLine();
 
-                // 난이도 설정 입력값 검증
-                if (!checkNumcountError(numCount)){
-                    System.out.println("올바른 숫자를 입력해주세요!");
-                    System.out.println();
+                // 3. 난이도 설정 입력값 검증
+                // 3 - 1 : if문 검증
+//                if (!checkNumcountError(numCount)){
+//                    System.out.println("올바른 숫자를 입력해주세요!");
+//                    System.out.println();
+//                }
+
+                // 3 - 2 : try - count문 검증
+                try {
+                    checkNumcountError(numCount);
+                } catch (InvalidInputException e) {
+                    System.out.println(e.getMessage());
+                    System.out.println("");
+                    continue;
                 }
 
-                else {
-                    baseballGame = new BaseballGame(Integer.parseInt(numCount));
-                    System.out.println(numCount+"자리수 난이도로 설정되었습니다.");
-                    System.out.println();
-                }
+                // 3 - 3 : 검증 성공
+                baseballGame = new BaseballGame(Integer.parseInt(numCount));
+                System.out.println(numCount + "자리수 난이도로 설정되었습니다.");
+                System.out.println();
+
             }
 
-            // 1 = 게임 시작
+            // 4. 게임 시작
             else if (start.equals("1")) {
-                if  (baseballGame == null){
+                if (baseballGame == null) {
                     baseballGame = new BaseballGame(3);
                     System.out.println("자리수를 3으로 자동 설정합니다!");
                 }
@@ -51,9 +71,9 @@ public class Main {
                 scoreboard.add(gameCount);
             }
 
-            // 2 = 저장된 게임기록 출력
+            // 5. 저장된 게임기록 출력
             else if (start.equals("2")) {
-                if(scoreboard.isEmpty()){
+                if (scoreboard.isEmpty()) {
                     System.out.println("아직 저장된 기록이 없습니다.");
                     System.out.println("");
                     continue;
@@ -64,7 +84,7 @@ public class Main {
                 System.out.println("─────────────────────────────────────────────────────────");
             }
 
-            // 3 = 게임 종료
+            // 6. 게임 종료
             else if (start.equals("3")) {
                 System.out.println("게임이 종료되었습니다!");
                 break;
@@ -73,14 +93,30 @@ public class Main {
     }
 
     // 시작 메뉴 입력값 검증
-    protected static boolean checkMenuError(String start) {
-        return start.equals("0") || start.equals("1") || start.equals("2") || start.equals("3");
+    // 1 : if문 검증
+//    protected static boolean checkMenuError(String start) {
+//        return start.equals("0") || start.equals("1") || start.equals("2") || start.equals("3");
+//    }
+
+    // 2 : try - catch문 검증
+    protected static void checkMenuError(String start) throws InvalidInputException {
+        if (!start.equals("0") && !start.equals("1") && !start.equals("2") && !start.equals("3")) {
+            throw new InvalidInputException("잘못된 입력입니다. 0 ~ 3 의 값을 입력하여 주십시오!");
+        }
     }
 
     // 난이도 설정 입력값 검증
-    protected static boolean checkNumcountError(String count) {
-        return count.equals("3") || count.equals("4") || count.equals("5");
+    // 1 : if문 검증
+//    protected static boolean checkNumcountError(String count) {
+//        return count.equals("3") || count.equals("4") || count.equals("5");
+//    }
+
+    // 2 : try - catch문 검증
+    protected static void checkNumcountError(String count) throws InvalidInputException {
+        if (!count.equals("3") && !count.equals("4") && !count.equals("5")) {
+            throw new InvalidInputException("잘못된 입력입니다. 3 ~ 5 의 값을 입력하여 주십시오!");
+
+
+        }
     }
 }
-
-

@@ -38,10 +38,22 @@ public class BaseballGame {
             String num = sc.nextLine();
 
             // 2. 올바른 입력값을 받았는지 검증
-            if (!validateInput(num)) {
-                System.out.println("잘못된 입력입니다. 다시 시도해주십시오.");
+
+            // 2 - 1 : if문 겁증
+//            if (!validateInput(num)) {
+//                System.out.println("잘못된 입력입니다. 다시 시도해주십시오.");
+//                continue;
+//            }
+
+            // 2 - 2 : try - catch문 검증
+            try{
+                validateInput(num);
+            } catch (InvalidInputException e) {
+                System.out.println (e.getMessage());
+                System.out.println("");
                 continue;
             }
+
 
             // 3. 게임 진행횟수 증가
             gameCount++;
@@ -66,9 +78,20 @@ public class BaseballGame {
     }
 
     // 입력값 검증 메서드
-    protected boolean validateInput(String num) {
-        if (num.length() != numCount) return false;
-        return num.chars().distinct().count() == numCount;
+    // 2 - 1 : if문 겁증
+//    protected boolean validateInput(String num) {
+//        if (num.length() != numCount) return false;
+//        return num.chars().distinct().count() == numCount;
+//    }
+
+    // 2 - 2 : try - catch문 검증
+    protected void validateInput(String num) throws InvalidInputException {
+        if (num.length() != numCount) {
+            throw new InvalidInputException("잘못된 입력입니다. " + numCount + "자리 수를 입력하여 주십시오!");
+        }
+        if (num.chars().distinct().count() != numCount){
+            throw new InvalidInputException("잘못된 입력입니다. 중복되지 않는 숫자를 입력해 주십시오!");
+        }
     }
 
     // 스트라이크 개수 계산
